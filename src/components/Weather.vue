@@ -8,7 +8,7 @@
     <br>
     Wind Gust: {{forecast.windGust}}
     <br>
-    Chance of Rain: {{forecast.precipProbability*100}}%
+    Chance of Rain: {{(forecast.precipProbability*100).toFixed(2)}}%
     <br>
   </div>
 </template>

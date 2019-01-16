@@ -80,7 +80,8 @@ export default {
             .map(item => {
               return parseFloat(item[1]);
             })
-            .slice(0, 20);
+            .slice(0, 10)
+            .reverse();
 
           // console.log(response.data.data.result[0].values);
           //console.log(newloaddata);
@@ -107,7 +108,7 @@ export default {
             .map(item => {
               return parseFloat(item[1] / 100000000); //divide data down to palatable level
             })
-            .slice(0, 20);
+            .slice(0, 10);
           this.error = false;
 
           // console.log(response.data.data.result[0].values);

@@ -1,0 +1,15 @@
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
+#dashboard {
+    display: grid;
+    grid-template-columns: 4fr 2fr 2fr 1fr;
+    column-gap: 10px;
+    row-gap: 1em;
+    position: relative
+}
+.doubleheight{
+    grid-column: 1;
+    grid-row: 2;
+}

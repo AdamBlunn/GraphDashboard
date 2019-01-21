@@ -16,6 +16,15 @@ export default {
   props: ['refreshSeconds'], 
   mounted() {
     setInterval(this.refresh, this.refreshSeconds*1000);
+    let statsCache = localStorage.getItem("Stats");
+    if (statsCache){
+      this.stats=JSON.parse(statsCache)
+    }
+    let ticketsCache = localStorage.getItem("Tickets");
+    if(ticketsCache){
+      this.tickets=JSON.parse(ticketsCache);
+    }
+    this.refresh();
   },
   data() {
     return {
@@ -31,16 +40,23 @@ export default {
         .then(response => {
           // handle success
           //console.log(response);
-          this.stats = response.data.stats;
-          this.tickets = response.data.tickets.slice(0,5);
-          this.error=false
-
+         let tempStats = response.data.stats;
+         let tempTickets = response.data.tickets.slice(0,5);
+         this.error=false;
+         
+         this.updateValues(tempStats,tempTickets);
         })
         .catch((error)=> {
           // handle error
           console.log(error);
           this.error=true;
         });
+    },
+    updateValues(newStats,newTickets){
+      this.stats=newStats;
+      this.tickets=newTickets;
+      localStorage.setItem("Stats", JSON.stringify(newStats));
+      localStorage.setItem("Tickets",JSON.stringify(newTickets));
     }
   }
 };

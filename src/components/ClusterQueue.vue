@@ -10,6 +10,17 @@ export default {
   props: ["refreshSeconds"],
   mounted() {
     setInterval(this.refresh, this.refreshSeconds * 1000);
+    let pendingCache = localStorage.getItem("Pending");
+
+    if (pendingCache) {
+      this.pending = JSON.parse(pendingCache);
+    }
+    let runningCache = localStorage.getItem("Running");
+
+    if (runningCache) {
+      this.running = JSON.parse(runningCache);
+    }
+    this.refresh();
   },
   data() {
     return {
@@ -50,21 +61,31 @@ export default {
         .get(`http://${process.env.VUE_APP_API_IP}:3001/`)
         .then(response => {
           // handle success
-
-          // this.series[0].data[0] = response.data.stats.pending;
-          // this.series[0].data[1] = response.data.stats.running;
-          this.$refs.clusterChart.updateSeries([
-            {
-              data: [response.data.stats.pending, response.data.stats.running]
-            }
-          ]);
-          this.error = false;
+          let tempPending = response.data.stats.pending;
+          let tempRunning = response.data.stats.running;
+          this.updateValues(tempPending, tempRunning);
         })
         .catch(error => {
           // handle error
           console.log(error);
+          this.updateValues(this.pending, this.running);
           this.error = true;
         });
+    },
+    updateValues(newPending, newRunning) {
+      this.pending = newPending;
+      this.running = newRunning;
+      this.updateChart();
+      localStorage.setItem("Pending", JSON.stringify(newPending));
+      localStorage.setItem("Running", JSON.stringify(newRunning));
+    },
+    updateChart() {
+      this.$refs.clusterChart.updateSeries([
+        {
+          data: [this.pending, this.running]
+        }
+      ]);
+      this.error = false;
     }
   }
 };

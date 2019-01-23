@@ -19,5 +19,5 @@ RUN mv .env.docker .env
 # build app for production with minification
 RUN npm run build
 
-EXPOSE 8080 3001 3000
+EXPOSE 8080 3001 3000 3002
 CMD [ "http-server", "dist" ]

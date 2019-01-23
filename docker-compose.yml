@@ -31,5 +31,13 @@ services:
     expose:
       - "3000"
     command: ["node", "./index.js"]
+  weather:
+    image: localhost:5000/dashboard-graphs
+    ports:
+      - "3002:3002"
+    expose:
+      - "3002"
+    command: ["node","./weather.js"]
+    
   
 

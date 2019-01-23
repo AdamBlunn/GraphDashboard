@@ -25,7 +25,7 @@ export default {
         windGust: "",
         precipProbability: ""
       },
-      apiUrl: "http://localhost:8080/weather.json"
+      apiUrl: "http://localhost:3002/"
     };
   },
   mounted() {

@@ -13,7 +13,9 @@
       <donut-chart/>
     </div>
     <div class="border shadow, bg-grey-lightest">Hello</div>
-    <div class="border shadow, bg-grey-lightest">Hello</div>
+    <div class="border shadow, bg-grey-lightest">
+      <licences refresh-seconds="1"/>
+    </div>
     <div class="border shadow, bg-grey-lightest">
       <weather refresh-seconds="10"/>
     </div>
@@ -28,6 +30,7 @@ import DonutChart from "@/components/DonutChart.vue";
 import Tickets from "@/components/Tickets.vue";
 import ClusterQueue from "@/components/ClusterQueue.vue";
 import Weather from "@/components/Weather.vue";
+import Licences from "@/components/Licences.vue";
 
 export default {
   name: "home",
@@ -37,7 +40,8 @@ export default {
     DonutChart,
     Tickets,
     ClusterQueue,
-    Weather
+    Weather,
+    Licences
   }
 };
 </script>

@@ -112,7 +112,7 @@ export default {
 
       const loadurl = `http://localhost:9090/api/v1/query_range?query=node_load5{job=%22mymac%22}&start=${startString}&end=${endString}&step=15s`;
 
-      const memurl = `http://localhost:9090/api/v1/query_range?query=node_memory_active_bytes{job=%22mymac%22}&start=2019-01-10T20:10:30.781Z&end=2019-01-11T20:11:00.781Z&step=15s`;
+      const memurl = `http://localhost:9090/api/v1/query_range?query=node_memory_active_bytes{job=%22mymac%22}&start=${startString}&end=${endString}&step=15s`;
 
       this.fetchLoad(loadurl);
       this.fetchMemory(memurl);

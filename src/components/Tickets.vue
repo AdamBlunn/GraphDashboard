@@ -1,10 +1,11 @@
 <template>
   <p class="text-sm" :class="{'bg-red': error}">
-    <strong>{{stats.new_this_week}} New Tickets This Week</strong>
+    <strong>{{this.tickets.length}} Tickets to be handled.</strong>
     <br>
     <br>
     <ul>
-        <li v-for="ticket in tickets" :key="ticket.id">{{ticket.subject}}</li>
+        <!-- {{this.tickets[0].title}} -->
+        <li v-for="ticket in tickets" :key="ticket.link">{{ticket.title}} -- {{ticket.creator}}<br/><br/></li>
     </ul>
     <br>
   </p>
@@ -16,10 +17,10 @@ export default {
   props: ['refreshSeconds'], 
   mounted() {
     setInterval(this.refresh, this.refreshSeconds*1000);
-    let statsCache = localStorage.getItem("Stats");
-    if (statsCache){
-      this.stats=JSON.parse(statsCache)
-    }
+    // let statsCache = localStorage.getItem("Stats");
+    // if (statsCache){
+    //   this.stats=JSON.parse(statsCache)
+    // }
     let ticketsCache = localStorage.getItem("Tickets");
     if(ticketsCache){
       this.tickets=JSON.parse(ticketsCache);
@@ -30,36 +31,34 @@ export default {
   data() {
     return {
       error:false,
-      stats: {},
+      // stats: {},
       tickets: []
     };
   },
   methods: {
     refresh() {
       axios
-        .get(`http://${process.env.VUE_APP_API_IP}:3000/`)
+        .get(`http://${process.env.VUE_APP_API_IP}:3018/`)
         .then(response => {
           // handle success
           //console.log(response);
-         let tempStats = response.data.stats;
-         let tempTickets = response.data.tickets.slice(0,5);
-         this.error=false;
-         
-         this.updateValues(tempStats,tempTickets);
+         let ticket = response.data.items
+        //  let stats = 0
+         this.error=false;        
+         this.updateValues(ticket);
         })
         .catch((error)=> {
-          // handle error
+          // handle error 
           console.log(error);
           this.error=true;
         });
     },
-    updateValues(newStats,newTickets){
-      this.stats=newStats;
+    updateValues(newTickets){
+      // this.stats=newStats;
       this.tickets=newTickets;
-      localStorage.setItem("Stats", JSON.stringify(newStats));
+      // localStorage.setItem("Stats", JSON.stringify(newStats));
       localStorage.setItem("Tickets",JSON.stringify(newTickets));
     }
   }
 };
 </script>
-

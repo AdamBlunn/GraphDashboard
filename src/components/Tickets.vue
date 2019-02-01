@@ -1,11 +1,11 @@
 <template>
-  <p class="text-sm" :class="{'bg-red': error}">
+  <p class="text-md text-center" :class="{'bg-white': error}">
     <strong>{{this.tickets.length}} Tickets to be handled.</strong>
     <br>
     <br>
-    <ul>
+    <ul class="text-sm ">
         <!-- {{this.tickets[0].title}} -->
-        <li v-for="ticket in tickets" :key="ticket.link">{{ticket.title}} -- {{ticket.creator}}<br/><br/></li>
+        <li class="mb-3 border-b pb-3" v-for="ticket in tickets" :key="ticket.link">{{ticket.title}} <br>creator: {{ticket.creator}}<br/><br/></li>
     </ul>
     <br>
   </p>

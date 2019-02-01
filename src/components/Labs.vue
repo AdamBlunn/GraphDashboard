@@ -57,6 +57,11 @@ export default {
             "JWS 611",
             "JWS 712"
           ]
+        },
+        labels: {
+          style: {
+            colors: "#ffffff"
+          }
         }
       },
       series: [

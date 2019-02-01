@@ -1,14 +1,15 @@
 <template>
   <div>
-    {{forecast.summary}}
+    <img id="weather-logo" src="./Weather.png" alt="weather ico" height="42" width="42">
+    <p class="mb-3 border-b pb-4">{{forecast.summary}}</p>
     <br>
-    Temperature: {{forecast.temperature}}°c
+    <p class="mb-3 border-b pb-4">Temperature: {{forecast.temperature}}°c</p>
     <br>
-    Wind Speed: {{forecast.windSpeed}}mph
+    <p class="mb-3 border-b pb-4">Speed: {{forecast.windSpeed}}mph</p>
     <br>
-    Wind Gust: {{forecast.windGust}}
+    <p class="mb-3 border-b pb-4">Wind Gust: {{forecast.windGust}}</p>
     <br>
-    Chance of Rain: {{(forecast.precipProbability*100).toFixed(2)}}%
+    <p class="mb-3 border-b pb-4">Chance of Rain: {{(forecast.precipProbability*100).toFixed(2)}}%</p>
     <br>
   </div>
 </template>

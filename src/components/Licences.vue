@@ -1,18 +1,22 @@
 <template>
-  <p class="text-sm" :class="{'bg-red': error}">
+<div lass="shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2">
+  <p class="text-sm, text-center" :class="{'bg-red': error}">
     <strong>{{numberOfLicences}} licences expiring in the next month</strong>
     <br>
     <br>
     <ul>
-        <li v-for="licence in licence" :key="licence.id">{{licence.Title}} <br/>{{licence.Description}} Contact:{{licence.Contact}} <br/> </li>
+        <li class="mb-3 border-b pb-4" v-for="licence in licence" :key="licence.id">{{licence.Title}} <br/>{{licence.Description}} Contact:{{licence.Contact}} <br/> </li>
         
-    </ul>
-    <strong>Expired Licences</strong>
+    </ul><br>
+    <strong class="text-grey-lightest">Expired Licences</strong>
+    
     <ul>
-      <li v-for="licence in licenceExpired" :key="licence.id">{{licence.Title}}<br/>{{licence.Description}}<br/> Contact: {{licence.Contact}}<br/>{{licence.ExpireDate}}</li>
+      <br>
+      <li class="mb-3 border-b pb-4" v-for="licence in licenceExpired" :key="licence.id"><br>{{licence.Title}}<br/>{{licence.Description}}<br/> Contact: {{licence.Contact}}<br/>{{licence.ExpireDate}}</li>
     </ul>
     <br>
   </p>
+</div>
 </template>
 <script>
 var isToday = require('date-fns/is_today')

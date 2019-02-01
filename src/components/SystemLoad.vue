@@ -44,7 +44,7 @@ export default {
         },
 
         yaxis: {
-          max: 20
+          max: 30
         }
       },
       series: [

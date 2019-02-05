@@ -97,7 +97,7 @@ export default {
     getValues() {
       proxy.get(this.apiconfig.r329Key).then(response => {
         this.r329 = response.data;
-        // console.log(this.r329);
+        //console.log(this.apiconfig);
         localStorage.setItem("r329", JSON.stringify(this.r329));
         this.updateChart();
       });

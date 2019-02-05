@@ -4,7 +4,7 @@
       <system-load refresh-seconds="10"/>
     </div>
     <div class="border shadow doubleheight tickets bg-red border-soft-red rounded-lg">
-      <tickets :apiconfig="apiConfig" refresh-seconds="10"/>
+      <tickets refresh-seconds="10" :apiconfig="apiConfig"/>
     </div>
     <div class="border shadow, bg-teal-uni border-teal-dark rounded cluster">
       <cluster-queue refresh-seconds="10"></cluster-queue>
@@ -19,7 +19,7 @@
       <licences refresh-seconds="1" class="text-justify, text-grey-lightest"/>
     </div>
     <div class="border shadow, bg-blue-uni border-grey container-sm rounded float-right">
-      <weather refresh-seconds="10" class="text-grey-lightest text-center"/>
+      <weather refresh-seconds="10" :apiconfig="apiConfig" class="text-grey-lightest text-center"/>
     </div>
   </div>
 </template>

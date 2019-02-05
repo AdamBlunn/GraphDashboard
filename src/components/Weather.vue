@@ -17,7 +17,7 @@
 const axios = require("axios");
 import proxy from "../modules/cors-client.js";
 export default {
-  props: ["refreshSeconds"],
+  props: ["refreshSeconds", "apiconfig"],
   data() {
     return {
       forecast: {
@@ -26,8 +26,8 @@ export default {
         windSpeed: "",
         windGust: "",
         precipProbability: ""
-      },
-      apiUrl: process.env.VUE_APP_WEATHER_URL
+      }
+      // apiUrl: process.env.VUE_APP_WEATHER_URL
     };
   },
   mounted() {
@@ -56,7 +56,7 @@ export default {
   methods: {
     refresh() {
       proxy
-        .get(this.apiUrl)
+        .get(this.apiconfig.weatherUrl)
         .then(response => {
           const weather = response.data.hourly;
           this.updateValues(weather);

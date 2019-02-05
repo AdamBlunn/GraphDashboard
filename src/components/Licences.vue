@@ -28,7 +28,7 @@ var subMonths = require('date-fns/sub_months')
 const axios = require("axios");
 import proxy from "../modules/cors-client.js";
 export default {
-  props: ['refreshSeconds'], 
+  props: ["refreshSeconds", /*"apiconfig"*/],
   mounted() {
     setInterval(this.refresh, this.refreshSeconds*1000);
     let licenceCache = localStorage.getItem("Exiring Licences");
@@ -43,7 +43,7 @@ export default {
     if(lengthCache){
       this.licenceExpired = JSON.parse(expiredLicencesCache)
     }
-    this.refresh();
+     this.refresh();
   },
   data() {
     return {

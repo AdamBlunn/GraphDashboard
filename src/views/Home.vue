@@ -4,7 +4,7 @@
       <system-load refresh-seconds="10"/>
     </div>
     <div class="border shadow doubleheight tickets bg-red border-soft-red rounded-lg">
-      <tickets refresh-seconds="10"/>
+      <tickets :apiconfig="apiConfig" refresh-seconds="10"/>
     </div>
     <div class="border shadow, bg-teal-uni border-teal-dark rounded cluster">
       <cluster-queue refresh-seconds="10"></cluster-queue>
@@ -47,24 +47,28 @@ export default {
     Licences,
     Labs
   },
-  apiConfig: {
-    weatherUrl: process.env.VUE_APP_WEATHER_URL,
-    ticketsUrl: process.env.VUE_APP_TICKETS_URL,
-    licenceUrl: process.env.VUE_APP_LICENCE_URL,
-    r317Key: process.env.VUE_APP_R317_KEY,
-    r317AKey: process.env.VUE_APP_R317A_KEY,
-    r329Key: process.env.VUE_APP_R329_KEY,
-    r329AKey: process.env.VUE_APP_R329A_KEY,
-    r602Key: process.env.VUE_APP_R602_KEY,
-    r602AKey: process.env.VUE_APP_R602A_KEY,
-    r739Key: process.env.VUE_APP_R739_KEY,
-    r739AKey: process.env.VUE_APP_R739A_KEY,
-    JWS544Key: process.env.VUE_APP_JWS544_KEY,
-    JWS544AKey: process.env.VUE_APP_JWS544A_KEY,
-    JWS611Key: process.env.VUE_APP_JWS611_KEY,
-    JWS611AKey: process.env.VUE_APP_JWS611A_KEY,
-    JWS712Key: process.env.VUE_APP_JWS712_KEY,
-    JWS712AKey: process.env.VUE_APP_JWS712A_KEY
+  data() {
+    return {
+      apiConfig: {
+        weatherUrl: process.env.VUE_APP_WEATHER_URL,
+        ticketsUrl: process.env.VUE_APP_TICKETS_URL,
+        licenceUrl: process.env.VUE_APP_LICENCE_URL,
+        r317Key: process.env.VUE_APP_R317_KEY,
+        r317AKey: process.env.VUE_APP_R317A_KEY,
+        r329Key: process.env.VUE_APP_R329_KEY,
+        r329AKey: process.env.VUE_APP_R329A_KEY,
+        r602Key: process.env.VUE_APP_R602_KEY,
+        r602AKey: process.env.VUE_APP_R602A_KEY,
+        r739Key: process.env.VUE_APP_R739_KEY,
+        r739AKey: process.env.VUE_APP_R739A_KEY,
+        JWS544Key: process.env.VUE_APP_JWS544_KEY,
+        JWS544AKey: process.env.VUE_APP_JWS544A_KEY,
+        JWS611Key: process.env.VUE_APP_JWS611_KEY,
+        JWS611AKey: process.env.VUE_APP_JWS611A_KEY,
+        JWS712Key: process.env.VUE_APP_JWS712_KEY,
+        JWS712AKey: process.env.VUE_APP_JWS712A_KEY
+      }
+    };
   }
 };
 </script>

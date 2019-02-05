@@ -95,73 +95,73 @@ export default {
   },
   methods: {
     getValues() {
-      proxy.get(apiconfig.r329Key).then(response => {
+      proxy.get(this.apiconfig.r329Key).then(response => {
         this.r329 = response.data;
         // console.log(this.r329);
         localStorage.setItem("r329", JSON.stringify(this.r329));
         this.updateChart();
       });
-      proxy.get(apiconfig.r329AKey).then(response => {
+      proxy.get(this.apiconfig.r329AKey).then(response => {
         this.r329A = response.data;
         localStorage.setItem("r329Active", JSON.stringify(this.r329A));
         this.updateChart();
       });
-      proxy.get(apiconfig.r317Key).then(response => {
+      proxy.get(this.apiconfig.r317Key).then(response => {
         this.r317 = response.data;
         localStorage.setItem("r317", JSON.stringify(this.r317));
         this.updateChart();
       });
-      proxy.get(apiconfig.r317AKey).then(response => {
+      proxy.get(this.apiconfig.r317AKey).then(response => {
         this.r317A = response.data;
         localStorage.setItem("r317A", JSON.stringify(this.r317A));
         this.updateChart();
       });
-      proxy.get(apiconfig.r739Key).then(response => {
+      proxy.get(this.apiconfig.r739Key).then(response => {
         this.r739 = response.data;
         localStorage.setItem("r739", JSON.stringify(this.r739));
         this.updateChart();
       });
-      proxy.get(apiconfig.r739AKey).then(response => {
+      proxy.get(this.apiconfig.r739AKey).then(response => {
         this.r739A = response.data;
         localStorage.setItem("r739A", JSON.stringify(this.r739A));
         this.updateChart();
       });
-      proxy.get(apiconfig.r602Key).then(response => {
+      proxy.get(this.apiconfig.r602Key).then(response => {
         this.r602 = response.data;
         localStorage.setItem("r602", JSON.stringify(this.r602));
         this.updateChart();
       });
-      proxy.get(apiconfig.r602AKey).then(response => {
+      proxy.get(this.apiconfig.r602AKey).then(response => {
         this.r602A = response.data;
         localStorage.setItem("r602A", JSON.stringify(this.r602A));
         this.updateChart();
       });
-      proxy.get(apiconfig.JWS544Key).then(response => {
+      proxy.get(this.apiconfig.JWS544Key).then(response => {
         this.JWS544 = response.data;
         localStorage.setItem("JWS544", JSON.stringify(this.JWS544));
         this.updateChart();
       });
-      proxy.get(apiconfig.JWS544AKey).then(response => {
+      proxy.get(this.apiconfig.JWS544AKey).then(response => {
         this.JWS544A = response.data;
         localStorage.setItem("JWS544A", JSON.stringify(this.JWS544A));
         this.updateChart();
       });
-      proxy.get(apiconfig.JWS611Key).then(response => {
+      proxy.get(this.apiconfig.JWS611Key).then(response => {
         this.JWS611 = response.data;
         localStorage.setItem("JWS611", JSON.stringify(this.JWS611));
         this.updateChart();
       });
-      proxy.get(apiconfig.JWS611AKey).then(response => {
+      proxy.get(this.apiconfig.JWS611AKey).then(response => {
         this.JWS611A = response.data;
         localStorage.setItem("JWS611A", JSON.stringify(this.JWS611A));
         this.updateChart();
       });
-      proxy.get(apiconfig.JWS712Key).then(response => {
+      proxy.get(this.apiconfig.JWS712Key).then(response => {
         this.JWS712 = response.data;
         localStorage.setItem("JWS712", JSON.stringify(this.JWS712));
         this.updateChart();
       });
-      proxy.get(apiconfig.JWS712AKey).then(response => {
+      proxy.get(this.apiconfig.JWS712AKey).then(response => {
         this.JWS712A = response.data;
         localStorage.setItem("JWS712A", JSON.stringify(this.JWS712A));
         this.updateChart();

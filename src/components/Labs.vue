@@ -5,7 +5,9 @@
 </template>
 <script>
 const axios = require("axios");
+import proxy from "../modules/cors-client.js";
 export default {
+  props: ["apiconfig"],
   mounted() {
     setInterval(this.getValues, 100000);
     let r329cCache = localStorage.getItem("r329");
@@ -20,11 +22,26 @@ export default {
     let JWS611AcCache = localStorage.getItem("JWS611Active");
     let JWS712cCache = localStorage.getItem("JWS712");
     let JWS712AcCache = localStorage.getItem("JWS712Active");
+    // console.log(apiConfig.r329Key);
     this.getValues();
   },
   data() {
     return {
       error: false,
+      // r329Key: process.env.VUE_APP_R329_KEY,
+      // r329AKey: process.env.VUE_APP_R329A_KEY,
+      // r317Key: process.env.VUE_APP_R317_KEY,
+      // r317AKey: process.env.VUE_APP_R317A_KEY,
+      // r739Key: process.env.VUE_APP_R739_KEY,
+      // r739AKey: process.env.VUE_APP_R739A_KEY,
+      // r602Key: process.env.VUE_APP_R602_KEY,
+      // r602AKey: process.env.VUE_APP_R602A_KEY,
+      // JWS544Key: process.env.VUE_APP_JWS544_KEY,
+      // JWS544AKey: process.env.VUE_APP_JWS544A_KEY,
+      // JWS611Key: process.env.VUE_APP_JWS611_KEY,
+      // JWS611AKey: process.env.VUE_APP_JWS611A_KEY,
+      // JWS712Key: process.env.VUE_APP_JWS712_KEY,
+      // JWS712AKey: process.env.VUE_APP_JWS712A_KEY,
       r329: 0,
       r329A: 0,
       r317: 0,
@@ -78,72 +95,73 @@ export default {
   },
   methods: {
     getValues() {
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3004/`).then(response => {
+      proxy.get(apiconfig.r329Key).then(response => {
         this.r329 = response.data;
+        // console.log(this.r329);
         localStorage.setItem("r329", JSON.stringify(this.r329));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3005/`).then(response => {
+      proxy.get(apiconfig.r329AKey).then(response => {
         this.r329A = response.data;
         localStorage.setItem("r329Active", JSON.stringify(this.r329A));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3006/`).then(response => {
+      proxy.get(apiconfig.r317Key).then(response => {
         this.r317 = response.data;
         localStorage.setItem("r317", JSON.stringify(this.r317));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3007/`).then(response => {
+      proxy.get(apiconfig.r317AKey).then(response => {
         this.r317A = response.data;
         localStorage.setItem("r317A", JSON.stringify(this.r317A));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3008/`).then(response => {
+      proxy.get(apiconfig.r739Key).then(response => {
         this.r739 = response.data;
         localStorage.setItem("r739", JSON.stringify(this.r739));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3009/`).then(response => {
+      proxy.get(apiconfig.r739AKey).then(response => {
         this.r739A = response.data;
         localStorage.setItem("r739A", JSON.stringify(this.r739A));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3010/`).then(response => {
+      proxy.get(apiconfig.r602Key).then(response => {
         this.r602 = response.data;
         localStorage.setItem("r602", JSON.stringify(this.r602));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3011/`).then(response => {
+      proxy.get(apiconfig.r602AKey).then(response => {
         this.r602A = response.data;
         localStorage.setItem("r602A", JSON.stringify(this.r602A));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3012/`).then(response => {
+      proxy.get(apiconfig.JWS544Key).then(response => {
         this.JWS544 = response.data;
         localStorage.setItem("JWS544", JSON.stringify(this.JWS544));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3013/`).then(response => {
+      proxy.get(apiconfig.JWS544AKey).then(response => {
         this.JWS544A = response.data;
         localStorage.setItem("JWS544A", JSON.stringify(this.JWS544A));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3014/`).then(response => {
+      proxy.get(apiconfig.JWS611Key).then(response => {
         this.JWS611 = response.data;
         localStorage.setItem("JWS611", JSON.stringify(this.JWS611));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3015/`).then(response => {
+      proxy.get(apiconfig.JWS611AKey).then(response => {
         this.JWS611A = response.data;
         localStorage.setItem("JWS611A", JSON.stringify(this.JWS611A));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3016/`).then(response => {
+      proxy.get(apiconfig.JWS712Key).then(response => {
         this.JWS712 = response.data;
         localStorage.setItem("JWS712", JSON.stringify(this.JWS712));
         this.updateChart();
       });
-      axios.get(`http://${process.env.VUE_APP_API_IP}:3017/`).then(response => {
+      proxy.get(apiconfig.JWS712AKey).then(response => {
         this.JWS712A = response.data;
         localStorage.setItem("JWS712A", JSON.stringify(this.JWS712A));
         this.updateChart();

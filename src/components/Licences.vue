@@ -26,6 +26,7 @@ var parse = require('date-fns/parse')
 var addMonths = require('date-fns/add_months')
 var subMonths = require('date-fns/sub_months')
 const axios = require("axios");
+import proxy from "../modules/cors-client.js";
 export default {
   props: ['refreshSeconds'], 
   mounted() {
@@ -49,14 +50,15 @@ export default {
       error:false,
       licence: [{}],
       licenceExpired:[{}],
-      numberOfLicences:0
+      numberOfLicences:0,
+      licUrl: process.env.VUE_APP_LICENCE_URL
       
     };
   },
   methods: {
     refresh() {
-      axios
-        .get(`http://${process.env.VUE_APP_API_IP}:3003/`)
+      proxy
+        .get(this.licUrl)
         .then(response => {
           // handle success
           //console.log(response);

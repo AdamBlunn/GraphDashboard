@@ -22,11 +22,6 @@ export default {
     let JWS611AcCache = localStorage.getItem("JWS611Active");
     let JWS712cCache = localStorage.getItem("JWS712");
     let JWS712AcCache = localStorage.getItem("JWS712Active");
-    // console.log(this.apiconfig.labnames);
-    // console.log(this.apiconfig.urlAll);
-    // console.log(this.apiconfig.urlActive);
-    // console.log(this.apiconfig.urlAll.concat(this.apiconfig.labnames[0]));
-
     // let url = [];
     // this.apiconfig.labnames.forEach(name => {
     //   url.push(this.urlAll + this.apiconfig.labnames[name]);

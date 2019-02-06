@@ -22,26 +22,23 @@ export default {
     let JWS611AcCache = localStorage.getItem("JWS611Active");
     let JWS712cCache = localStorage.getItem("JWS712");
     let JWS712AcCache = localStorage.getItem("JWS712Active");
-    // console.log(apiConfig.r329Key);
+    // console.log(this.apiconfig.labnames);
+    // console.log(this.apiconfig.urlAll);
+    // console.log(this.apiconfig.urlActive);
+    // console.log(this.apiconfig.urlAll.concat(this.apiconfig.labnames[0]));
+
+    // let url = [];
+    // this.apiconfig.labnames.forEach(name => {
+    //   url.push(this.urlAll + this.apiconfig.labnames[name]);
+    //   url.push(this.urlActive + this.apiconfig.labnames[name]);
+    // });
+    // console.log(url);
+
     this.getValues();
   },
   data() {
     return {
       error: false,
-      // r329Key: process.env.VUE_APP_R329_KEY,
-      // r329AKey: process.env.VUE_APP_R329A_KEY,
-      // r317Key: process.env.VUE_APP_R317_KEY,
-      // r317AKey: process.env.VUE_APP_R317A_KEY,
-      // r739Key: process.env.VUE_APP_R739_KEY,
-      // r739AKey: process.env.VUE_APP_R739A_KEY,
-      // r602Key: process.env.VUE_APP_R602_KEY,
-      // r602AKey: process.env.VUE_APP_R602A_KEY,
-      // JWS544Key: process.env.VUE_APP_JWS544_KEY,
-      // JWS544AKey: process.env.VUE_APP_JWS544A_KEY,
-      // JWS611Key: process.env.VUE_APP_JWS611_KEY,
-      // JWS611AKey: process.env.VUE_APP_JWS611A_KEY,
-      // JWS712Key: process.env.VUE_APP_JWS712_KEY,
-      // JWS712AKey: process.env.VUE_APP_JWS712A_KEY,
       r329: 0,
       r329A: 0,
       r317: 0,
@@ -95,77 +92,105 @@ export default {
   },
   methods: {
     getValues() {
-      proxy.get(this.apiconfig.r329Key).then(response => {
-        this.r329 = response.data;
-        //console.log(this.apiconfig);
-        localStorage.setItem("r329", JSON.stringify(this.r329));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.r329AKey).then(response => {
-        this.r329A = response.data;
-        localStorage.setItem("r329Active", JSON.stringify(this.r329A));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.r317Key).then(response => {
-        this.r317 = response.data;
-        localStorage.setItem("r317", JSON.stringify(this.r317));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.r317AKey).then(response => {
-        this.r317A = response.data;
-        localStorage.setItem("r317A", JSON.stringify(this.r317A));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.r739Key).then(response => {
-        this.r739 = response.data;
-        localStorage.setItem("r739", JSON.stringify(this.r739));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.r739AKey).then(response => {
-        this.r739A = response.data;
-        localStorage.setItem("r739A", JSON.stringify(this.r739A));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.r602Key).then(response => {
-        this.r602 = response.data;
-        localStorage.setItem("r602", JSON.stringify(this.r602));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.r602AKey).then(response => {
-        this.r602A = response.data;
-        localStorage.setItem("r602A", JSON.stringify(this.r602A));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.JWS544Key).then(response => {
-        this.JWS544 = response.data;
-        localStorage.setItem("JWS544", JSON.stringify(this.JWS544));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.JWS544AKey).then(response => {
-        this.JWS544A = response.data;
-        localStorage.setItem("JWS544A", JSON.stringify(this.JWS544A));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.JWS611Key).then(response => {
-        this.JWS611 = response.data;
-        localStorage.setItem("JWS611", JSON.stringify(this.JWS611));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.JWS611AKey).then(response => {
-        this.JWS611A = response.data;
-        localStorage.setItem("JWS611A", JSON.stringify(this.JWS611A));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.JWS712Key).then(response => {
-        this.JWS712 = response.data;
-        localStorage.setItem("JWS712", JSON.stringify(this.JWS712));
-        this.updateChart();
-      });
-      proxy.get(this.apiconfig.JWS712AKey).then(response => {
-        this.JWS712A = response.data;
-        localStorage.setItem("JWS712A", JSON.stringify(this.JWS712A));
-        this.updateChart();
-      });
+      proxy
+        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[0]))
+        .then(response => {
+          this.r329 = response.data;
+          console.log(this.apiconfig);
+          localStorage.setItem("r329", JSON.stringify(this.r329));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlActive.concat(this.apiconfig.labnames[0]))
+        .then(response => {
+          this.r329A = response.data;
+          localStorage.setItem("r329Active", JSON.stringify(this.r329A));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[1]))
+        .then(response => {
+          this.r317 = response.data;
+          localStorage.setItem("r317", JSON.stringify(this.r317));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlActive.concat(this.apiconfig.labnames[1]))
+        .then(response => {
+          this.r317A = response.data;
+          localStorage.setItem("r317A", JSON.stringify(this.r317A));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[2]))
+        .then(response => {
+          this.r739 = response.data;
+          localStorage.setItem("r739", JSON.stringify(this.r739));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlActive.concat(this.apiconfig.labnames[2]))
+        .then(response => {
+          this.r739A = response.data;
+          localStorage.setItem("r739A", JSON.stringify(this.r739A));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[3]))
+        .then(response => {
+          this.r602 = response.data;
+          localStorage.setItem("r602", JSON.stringify(this.r602));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlActive.concat(this.apiconfig.labnames[3]))
+        .then(response => {
+          this.r602A = response.data;
+          localStorage.setItem("r602A", JSON.stringify(this.r602A));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[4]))
+        .then(response => {
+          this.JWS544 = response.data;
+          localStorage.setItem("JWS544", JSON.stringify(this.JWS544));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlActive.concat(this.apiconfig.labnames[4]))
+        .then(response => {
+          this.JWS544A = response.data;
+          localStorage.setItem("JWS544A", JSON.stringify(this.JWS544A));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[5]))
+        .then(response => {
+          this.JWS611 = response.data;
+          localStorage.setItem("JWS611", JSON.stringify(this.JWS611));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlActive.concat(this.apiconfig.labnames[5]))
+        .then(response => {
+          this.JWS611A = response.data;
+          localStorage.setItem("JWS611A", JSON.stringify(this.JWS611A));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[6]))
+        .then(response => {
+          this.JWS712 = response.data;
+          localStorage.setItem("JWS712", JSON.stringify(this.JWS712));
+          this.updateChart();
+        });
+      proxy
+        .get(this.apiconfig.urlActive.concat(this.apiconfig.labnames[6]))
+        .then(response => {
+          this.JWS712A = response.data;
+          localStorage.setItem("JWS712A", JSON.stringify(this.JWS712A));
+          this.updateChart();
+        });
     },
 
     updateChart() {

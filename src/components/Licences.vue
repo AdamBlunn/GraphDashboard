@@ -5,7 +5,7 @@
     <br>
     <br>
     <ul>
-        <li class="mb-3 border-b pb-4" v-for="licence in licence" :key="licence.id">{{licence.Title}} <br/>{{licence.Description}} Contact:{{licence.Contact}} <br/> </li>
+        <li class="mb-3 border-b pb-4" v-for="licence in licence" :key="licence.id">{{licence.Title}} <br/>{{licence.Description}}<br> Contact:{{licence.Contact}} <br> {{licence.ExpireDate}}<br/> </li>
         
     </ul><br>
     <strong class="text-grey-lightest">Expired Licences</strong>

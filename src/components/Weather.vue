@@ -1,16 +1,32 @@
 <template>
   <div>
     <img id="weather-logo" src="./Weather.png" alt="weather ico" height="42" width="42">
-    <p class="mb-3 border-b pb-4">{{forecast.summary}}</p>
+    <p class="mb-4 border-b pb-4">{{forecast.summary}}</p>
     <br>
-    <p class="mb-3 border-b pb-4">Temperature: {{forecast.temperature}}°c</p>
+    <p class="mb-4 border-b pb-4">
+      Temperature:
+      <span class="text-gold">{{forecast.temperature}}°c</span>
+    </p>
     <br>
-    <p class="mb-3 border-b pb-4">Speed: {{forecast.windSpeed}}mph</p>
+    <p class="mb-4 border-b pb-4">
+      Wind Speed:
+      <span class="text-gold">{{forecast.windSpeed}}mph</span>
+    </p>
     <br>
-    <p class="mb-3 border-b pb-4">Wind Gust: {{forecast.windGust}}</p>
+    <p class="mb-4 border-b pb-4">
+      Wind Gust:
+      <span class="text-gold">{{forecast.windGust}}</span>
+    </p>
     <br>
-    <p class="mb-3 border-b pb-4">Chance of Rain: {{(forecast.precipProbability*100).toFixed(2)}}%</p>
+    <p class="mb-4 border-b pb-4">
+      Chance of Rain:
+      <span class="text-gold">{{(forecast.precipProbability*100).toFixed(2)}}%</span>
+    </p>
     <br>
+    <p class="mb-4 border-b pb-4">
+      Chance of Rain:
+      <span class="text-gold">{{(forecast.cloudCover*100).toFixed(2)}}%</span>
+    </p>
   </div>
 </template>
 <script>
@@ -52,6 +68,10 @@ export default {
     if (precipProbabilityCache) {
       this.forecast.precipProbability = JSON.parse(precipProbabilityCache);
     }
+    let cloudCoverCache = localStorage.getItem("Cloud Cover");
+    if (cloudCoverCache) {
+      this.forecast.cloudCover = JSON.parse(cloudCoverCache);
+    }
   },
   methods: {
     refresh() {
@@ -73,6 +93,8 @@ export default {
       this.forecast.windSpeed = weather.data[0].windSpeed;
       this.forecast.windGust = weather.data[0].windGust;
       this.forecast.precipProbability = weather.data[0].precipProbability;
+      this.forecast.cloudCover = weather.data[0].cloudCover;
+
       localStorage.setItem("Summary", JSON.stringify(weather.summary));
       localStorage.setItem(
         "Temperature",
@@ -83,6 +105,10 @@ export default {
       localStorage.setItem(
         "Rain Chance",
         JSON.stringify(weather.data[0].precipProbability)
+      );
+      localStorage.setItem(
+        "Cloud Cover",
+        JSON.stringify(weather.data[0].cloudCover)
       );
     }
   }

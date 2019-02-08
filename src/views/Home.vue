@@ -1,24 +1,25 @@
 <template>
   <div class="home" id="dashboard">
-    <div class="border shadow, bg-grey-uni-light load rounded">
+    <link rel="styleheet" type="text/css" href="../main.css">
+    <div class="shadow, bg-black-tile border-grey-darkest load rounded">
       <system-load refresh-seconds="10"/>
     </div>
-    <div class="border shadow doubleheight tickets bg-red border-soft-red rounded-lg">
+    <div class="border shadow tickets bg-blue-test border-blue-test container-sm rounded-lg">
       <tickets refresh-seconds="10" :apiconfig="apiConfig"/>
     </div>
-    <div class="border shadow, bg-teal-uni border-teal-dark rounded cluster">
-      <cluster-queue refresh-seconds="10"></cluster-queue>
-    </div>
-    <div class="border shadow rounded bg-grey-uni-light border-grey-light labs">
+
+    <div class="labs shadow rounded labs bg-black-tile">
       <labs :apiconfig="apiConfig"/>
     </div>
-    <!-- <div class="border shadow, bg-grey-lightest donut rounded">
-      <donut-chart/>
-    </div>-->
-    <div class="border shadow, rounded border-purple bg-blue-uni licences">
+    <div class="border shadow, rounded border-blue-test container-sm bg-blue-test licences">
       <licences refresh-seconds="1" class="text-justify, text-grey-lightest"/>
     </div>
-    <div class="border shadow, bg-blue-uni border-grey container-sm rounded float-right">
+    <div class="shadow rounded cluster bg-black-tile">
+      <cluster-queue refresh-seconds="10"></cluster-queue>
+    </div>
+    <div
+      class="border shadow bg-blue-test weather border-blue-test container-sm rounded float-right"
+    >
       <weather refresh-seconds="10" :apiconfig="apiConfig" class="text-grey-lightest text-center"/>
     </div>
   </div>
@@ -62,7 +63,7 @@ export default {
 };
 </script>
 <style scoped>
-.donut {
+/* .donut {
   grid-row: 1;
 }
 .labs {
@@ -79,6 +80,6 @@ export default {
 }
 .licences {
   grid-row: 3;
-}
+} */
 </style>
 

@@ -49,11 +49,16 @@ export default {
 
       chartOptions: {
         chart: {
-          stacked: true
+          stacked: true,
+          foreColor: "#fff",
+          toolbar: {
+            show: false
+          }
         },
         plotOptions: {
           bar: {
-            horizontal: true
+            horizontal: true,
+            datalabels: top
           }
         },
         xaxis: {
@@ -70,6 +75,21 @@ export default {
         labels: {
           style: {
             colors: "#ffffff"
+          }
+        },
+        datalabels: {
+          enabled: false,
+          style: {
+            colurs: "#FF0000"
+          }
+        },
+        theme: {
+          palette: "palette6",
+          monochrome: {
+            enabled: false,
+            color: "#D7263D",
+            shadeTo: "dark",
+            shadeIntensity: 0.65
           }
         }
       },

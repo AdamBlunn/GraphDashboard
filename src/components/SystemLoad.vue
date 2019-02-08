@@ -28,6 +28,10 @@ export default {
       value: 0,
       options: {
         chart: {
+          foreColor: "#fff",
+          toolbar: {
+            show: false
+          },
           animations: {
             enabled: true,
             easing: "linear",

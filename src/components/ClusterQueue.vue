@@ -29,6 +29,10 @@ export default {
       running: 0,
       options: {
         chart: {
+          foreColor: "#fff",
+          toolbar: {
+            show: false
+          },
           animations: {
             enabled: true,
             easing: "linear",
@@ -45,6 +49,9 @@ export default {
         },
         xaxis: {
           categories: ["Pending", "Running"]
+        },
+        yaxis: {
+          show: false
         }
       },
       series: [

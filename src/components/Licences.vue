@@ -1,20 +1,13 @@
 <template>
 <div lass="shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2">
-  <p class="text-sm, text-center" :class="{'bg-red': error}">
-    <strong>{{numberOfLicences}} licences expiring in the next month</strong>
+  <p class="text-sm, text-center text-white" :class="{'bg-red': error}">
+    <strong>{{numberOfLicences}} licences expiring soon</strong>
     <br>
     <br>
     <ul>
-        <li class="mb-3 border-b pb-4" v-for="licence in licence" :key="licence.id">{{licence.Title}} <br/>{{licence.Description}}<br> Contact:{{licence.Contact}} <br> {{licence.ExpireDate}}<br/> </li>
+        <li class="mb-3 border-b pb-4 text-xs" v-for="licence in licence" :key="licence.id">{{licence.Title}} <br/>{{licence.Description}}<br> Contact: {{licence.Contact}} <br> {{licence.ExpireDate}}<br> </li>
         
     </ul><br>
-    <strong class="text-grey-lightest">Expired Licences</strong>
-    
-    <ul>
-      <br>
-      <li class="mb-3 border-b pb-4" v-for="licence in licenceExpired" :key="licence.id"><br>{{licence.Title}}<br/>{{licence.Description}}<br/> Contact: {{licence.Contact}}<br/>{{licence.ExpireDate}}</li>
-    </ul>
-    <br>
   </p>
 </div>
 </template>
@@ -67,7 +60,7 @@ export default {
           const expiringLicenes = licences.filter(lic=>{
               const today = new Date();
               const expiryDate = parse(lic.ExpireDate)
-              const expiryMonth= addMonths(today,1)
+              const expiryMonth= addMonths(today,2)
               //console.log(expiryDate)
               if(isBefore(expiryDate,today))return false
 

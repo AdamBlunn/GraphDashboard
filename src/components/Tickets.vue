@@ -1,11 +1,11 @@
 <template>
-  <p class="text-md text-center" :class="{'bg-white': error}">
+  <p class="text-md text-center text-white" :class="{'bg-white': error}">
     <strong>{{this.tickets.length}} Tickets to be handled.</strong>
     <br>
     <br>
     <ul class="text-sm ">
         <!-- {{this.tickets[0].title}} -->
-        <li class="mb-3 border-b pb-3" v-for="ticket in tickets" :key="ticket.link">{{ticket.title}} <br>creator: {{ticket.creator}}<br/><br/></li>
+        <li class="mb-2 border-b pb-2 text-sm" v-for="ticket in tickets" :key="ticket.link">{{ticket.title}} <br>creator: {{ticket.creator}}<br/></li>
     </ul>
     <br>
   </p>
@@ -55,7 +55,13 @@ export default {
     },
     updateValues(newTickets){
       // this.stats=newStats;
-      this.tickets=newTickets;
+      let temp=[]
+      for (let index = 0; index < 10; index++) {
+        temp.push(newTickets[index]);
+        
+      }
+      this.tickets=temp;
+      //this.tickets=newTickets;
       // localStorage.setItem("Stats", JSON.stringify(newStats));
       localStorage.setItem("Tickets",JSON.stringify(newTickets));
     }

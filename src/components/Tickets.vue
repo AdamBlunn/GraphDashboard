@@ -3,9 +3,9 @@
     <strong>{{this.tickets.length}} Tickets to be handled.</strong>
     <br>
     <br>
-    <ul class="text-sm ">
+    <ul class="text-sm text-left ">
         <!-- {{this.tickets[0].title}} -->
-        <li class="mb-2 border-b pb-2 text-sm" v-for="ticket in tickets" :key="ticket.link">{{ticket.title}} <br>creator: {{ticket.creator}}<br/></li>
+        <li class="mb-2 border-b pb-2 text-sm" v-for="ticket in tickets" :key="ticket.link"><span class="text-gold">{{ticket.creator}}</span> - {{ticket.title}} <br/></li>
     </ul>
     <br>
   </p>
@@ -13,6 +13,7 @@
 
 <script>
 const axios = require("axios");
+const faker = require('faker')
 export default {
   props: ['refreshSeconds'], 
   mounted() {
@@ -25,7 +26,11 @@ export default {
     if(ticketsCache){
       this.tickets=JSON.parse(ticketsCache);
     }
+    // if (process.env.VUE_APP_ENVIROMENT == 'Demo'){
+    //   this.generateFaker()
+    // }
     this.refresh();
+    
   },
 
   data() {
@@ -53,6 +58,23 @@ export default {
           this.error=true;
         });
     },
+    // generateFaker(){
+    //   let ticket2 =[{
+    //     content:faker.lorem.words(),
+    //     contentSnippet:faker.lorem.words(),
+    //     creator: faker.name.findname(),
+    //     date:faker.date.recent(),
+    //     // dc:creator:"Stephen Thoms",
+    //     // dc:date:"Tue, 12 Feb 2019 08:52:31 +0000",
+    //     // isoDate:"2019-02-12T08:52:31.000Z",
+    //     // link:"http://oaoa.eng.gla.ac.uk/rt/Ticket/Display.html?id=122718",
+    //     title: faker.lorem.words()
+        
+
+    //   }]
+    //   updateValues(ticket2)
+
+    // },
     updateValues(newTickets){
       // this.stats=newStats;
       let temp=[]
@@ -64,6 +86,7 @@ export default {
       //this.tickets=newTickets;
       // localStorage.setItem("Stats", JSON.stringify(newStats));
       localStorage.setItem("Tickets",JSON.stringify(newTickets));
+      
     }
   }
 };

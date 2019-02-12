@@ -4,8 +4,8 @@
     <strong>{{numberOfLicences}} licences expiring soon</strong>
     <br>
     <br>
-    <ul>
-        <li class="mb-3 border-b pb-4 text-xs" v-for="licence in licence" :key="licence.id">{{licence.Title}} <br/>{{licence.Description}}<br> Contact: {{licence.Contact}} <br> {{licence.ExpireDate}}<br> </li>
+    <ul class="text-left">
+        <li class="mb-3 border-b pb-4 text-xs" v-for="licence in licence" :key="licence.id"><span class="text-gold"> {{licence.ExpireDate}}</span> - {{licence.Title}} <br> </li>
         
     </ul><br>
   </p>
@@ -78,6 +78,14 @@ export default {
             
             return true;           
           })
+          expiringLicenes.sort(function(a, b){
+          var x = a.ExpireDate.toLowerCase();
+          var y = b.ExpireDate.toLowerCase();
+          if (x < y) {return -1;}
+          if (x > y) {return 1;}
+          return 0;
+          })
+          console.log(expiringLicenes)
           this.updateValues(expiringLicenes, expiredLicences);
         })
         .catch((error)=> {

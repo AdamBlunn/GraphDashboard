@@ -12,13 +12,13 @@
       <labs :apiconfig="apiConfig"/>
     </div>
     <div class="border shadow, rounded border-blue-test container-sm bg-blue-test licences">
-      <licences refresh-seconds="1" class="text-justify, text-grey-lightest"/>
+      <licences refresh-seconds="1" class="text-center, text-grey-lightest"/>
     </div>
     <div class="shadow rounded cluster bg-black-tile">
       <cluster-queue refresh-seconds="10"></cluster-queue>
     </div>
     <div
-      class="border shadow bg-blue-test weather border-blue-test container-sm rounded float-right"
+      class="border shadow bg-blue-test weather border-blue-test container-xl rounded float-right"
     >
       <weather refresh-seconds="10" :apiconfig="apiConfig" class="text-grey-lightest text-center"/>
     </div>

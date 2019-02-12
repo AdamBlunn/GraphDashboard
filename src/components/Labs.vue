@@ -50,6 +50,7 @@ export default {
       chartOptions: {
         chart: {
           stacked: true,
+          stackType: "100%",
           foreColor: "#fff",
           toolbar: {
             show: false
@@ -84,7 +85,7 @@ export default {
           }
         },
         theme: {
-          palette: "palette6",
+          palette: "palette1",
           monochrome: {
             enabled: false,
             color: "#D7263D",

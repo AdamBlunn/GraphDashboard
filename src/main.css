@@ -8,8 +8,8 @@
     grid-gap: 1em;
     position: relative;
     grid-template-areas: 
-    "ti ti li wh"
-    "la cl ld ld"
+    "ti ti li li wh"
+    "la la cl ld ld"
     
     /* "ti ti ti ti" */
 }

@@ -5,11 +5,16 @@
 </template>
 <script>
 const axios = require("axios");
+const faker = require("faker");
 import proxy from "../modules/cors-client.js";
 export default {
   props: ["apiconfig"],
   mounted() {
-    setInterval(this.getValues, 100000);
+    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+      setInterval(this.fakeValues, 100000);
+    } else {
+      setInterval(this.refresh, 100000);
+    }
     let r329cCache = localStorage.getItem("r329");
     let r329AcCache = localStorage.getItem("r392Active");
     let r317cCache = localStorage.getItem("r317");
@@ -22,14 +27,17 @@ export default {
     let JWS611AcCache = localStorage.getItem("JWS611Active");
     let JWS712cCache = localStorage.getItem("JWS712");
     let JWS712AcCache = localStorage.getItem("JWS712Active");
-    // let url = [];
-    // this.apiconfig.labnames.forEach(name => {
-    //   url.push(this.urlAll + this.apiconfig.labnames[name]);
-    //   url.push(this.urlActive + this.apiconfig.labnames[name]);
-    // });
-    // console.log(url);
-
-    this.getValues();
+    let url = [];
+    this.apiconfig.labnames.forEach(name => {
+      url.push(this.urlAll + this.apiconfig.labnames[name]);
+      url.push(this.urlActive + this.apiconfig.labnames[name]);
+    });
+    console.log(url);
+    if (process.env.VUE_APP_ENVIROMENT == "Demo") {
+      this.fakeValues();
+    } else {
+      this.getValues();
+    }
   },
   data() {
     return {
@@ -207,6 +215,23 @@ export default {
           localStorage.setItem("JWS712A", JSON.stringify(this.JWS712A));
           this.updateChart();
         });
+    },
+    fakeValues() {
+      (this.r329 = faker.random.number()),
+        (this.r317 = faker.random.number()),
+        (this.r739 = faker.random.number()),
+        (this.r602 = faker.random.number()),
+        (this.JWS544 = faker.random.number()),
+        (this.JWS611 = faker.random.number()),
+        (this.JWS712 = faker.random.number()),
+        (this.r329A = faker.random.number(this.r329)),
+        (this.r317A = faker.random.number(this.r317)),
+        (this.r739A = faker.random.number(this.r739)),
+        (this.r602A = faker.random.number(this.r602)),
+        (this.JWS544A = faker.random.number(this.JWS544)),
+        (this.JWS611A = faker.random.number(this.JWS611)),
+        (this.JWS712A = faker.random.number(this.JWS712));
+      this.updateChart();
     },
 
     updateChart() {

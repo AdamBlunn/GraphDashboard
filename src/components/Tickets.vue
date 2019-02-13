@@ -10,29 +10,30 @@
     <br>
   </p>
 </template>
-
 <script>
 const axios = require("axios");
 const faker = require('faker')
 export default {
   props: ['refreshSeconds'], 
   mounted() {
-    setInterval(this.refresh, this.refreshSeconds*1000);
-    // let statsCache = localStorage.getItem("Stats");
-    // if (statsCache){
-    //   this.stats=JSON.parse(statsCache)
-    // }
+    if (process.env.VUE_APP_ENVIROMENT === 'Demo'){
+      setInterval(this.generateFaker,this.refreshSeconds*1000)   
+    }else{
+      setInterval(this.refresh, this.refreshSeconds*1000);
+      }
+     
+    let statsCache = localStorage.getItem("Stats");
+    if (statsCache){
+      this.stats=JSON.parse(statsCache)
+    }
     let ticketsCache = localStorage.getItem("Tickets");
     if(ticketsCache){
       this.tickets=JSON.parse(ticketsCache);
     }
-    // if (process.env.VUE_APP_ENVIROMENT == 'Demo'){
-    //   this.generateFaker()
-    // }
-    this.refresh();
-    
+    if (process.env.VUE_APP_ENVIROMENT == 'Demo'){
+      this.generateFaker()
+    }else{this.refresh();}    
   },
-
   data() {
     return {
       error:false,
@@ -46,7 +47,7 @@ export default {
         .get(`http://${process.env.VUE_APP_API_IP}:3018/`)
         .then(response => {
           // handle success
-          //console.log(response);
+          // console.log(response);
          let ticket = response.data.items
         //  let stats = 0
          this.error=false;        
@@ -58,35 +59,43 @@ export default {
           this.error=true;
         });
     },
-    // generateFaker(){
-    //   let ticket2 =[{
-    //     content:faker.lorem.words(),
-    //     contentSnippet:faker.lorem.words(),
-    //     creator: faker.name.findname(),
-    //     date:faker.date.recent(),
-    //     // dc:creator:"Stephen Thoms",
-    //     // dc:date:"Tue, 12 Feb 2019 08:52:31 +0000",
-    //     // isoDate:"2019-02-12T08:52:31.000Z",
-    //     // link:"http://oaoa.eng.gla.ac.uk/rt/Ticket/Display.html?id=122718",
-    //     title: faker.lorem.words()
-        
-
-    //   }]
-    //   updateValues(ticket2)
-
-    // },
+    generateFaker(){
+      let ticket2 =[{
+        content: faker.lorem.words(),
+        contentSnippet: faker.lorem.words(),
+        creator: faker.name.findName(),
+        date: faker.date.recent(),
+         link: faker.internet.url(),
+        title: faker.lorem.words()
+      },{
+        content: faker.lorem.words(),
+        contentSnippet: faker.lorem.words(),
+        creator: faker.name.findName(),
+        date: faker.date.recent(),
+        link: faker.internet.url(),
+        title: faker.lorem.words()
+      },{
+        content: faker.lorem.words(),
+        contentSnippet: faker.lorem.words(),
+        creator: faker.name.findName(),
+        date: faker.date.recent(),
+        link: faker.internet.url(),
+        title: faker.lorem.words()
+      },{
+        content: faker.lorem.words(),
+        contentSnippet: faker.lorem.words(),
+        creator: faker.name.findName(),
+        date: faker.date.recent(),
+        link: faker.internet.url(),
+        title: faker.lorem.words()
+      }
+      ]
+      this.updateValues(ticket2)
+    },
     updateValues(newTickets){
       // this.stats=newStats;
-      let temp=[]
-      for (let index = 0; index < 10; index++) {
-        temp.push(newTickets[index]);
-        
-      }
-      this.tickets=temp;
-      //this.tickets=newTickets;
-      // localStorage.setItem("Stats", JSON.stringify(newStats));
+      this.tickets=newTickets.slice(0,10)  
       localStorage.setItem("Tickets",JSON.stringify(newTickets));
-      
     }
   }
 };
